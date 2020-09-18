@@ -21,11 +21,11 @@ export default {
 	computed: {
 		chartdata: function() {
 			let dems = 0
-			let repubs = 0;
-			let inde = 0;
+			let repubs = 0
+			let inde = 0
 			this.reps.forEach(rep => {
 				if (rep.party === "D") {dems++} else if (rep.party === "R") {repubs++} else {inde++}
-			});
+			})
 			return {
 				labels: ['Democrats', 'Republicans', 'Independent'],
 				datasets: [

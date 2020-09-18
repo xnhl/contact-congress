@@ -21,11 +21,11 @@ export default {
 	computed: {
 		chartdata: function() {
 			let yes = 0
-			let no = 0;
-			let unknown = 0;
+			let no = 0
+			let unknown = 0
 			this.reps.forEach(rep => {
 				if (rep.nn_vote === "yes") {yes++} else if (rep.nn_vote === "no") {no++} else unknown++
-			});
+			})
 			return {
 				labels: ['Yes', 'No', 'Unknown'],
 				datasets: [

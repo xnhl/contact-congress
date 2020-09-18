@@ -223,31 +223,31 @@ export default {
 	},
 	methods: {
 		optionToggle: function(e) {
-			let name = e.target.dataset.toggleprop;
-			let tcount = this.toggleProps[name].count;
-			let tdataprop = this.toggleProps[name].dataprop;
-			let tvalue = this.toggleProps[name].value;
+			let name = e.target.dataset.toggleprop
+			let tcount = this.toggleProps[name].count
+			let tdataprop = this.toggleProps[name].dataprop
+			let tvalue = this.toggleProps[name].value
 			if (tcount % 2 == 0) {
-				let reps = [...document.getElementsByClassName("representative")];
-				let repsLen = reps.length;
+				let reps = [...document.getElementsByClassName("representative")]
+				let repsLen = reps.length
 				for (let a = 0; a < repsLen; a++) {
-					let hideProperties = JSON.parse(reps[a].dataset.hideprops);
+					let hideProperties = JSON.parse(reps[a].dataset.hideprops)
 					if (reps[a].dataset[tdataprop] == tvalue) {
-						reps[a].classList.add("hide");
-						hideProperties.push(tdataprop);
+						reps[a].classList.add("hide")
+						hideProperties.push(tdataprop)
 						reps[a].dataset.hideprops = JSON.stringify(hideProperties)
 					}
 				}
 			} else {
-				let reps = [...document.getElementsByClassName("representative")];
-				let repsLen = reps.length;
+				let reps = [...document.getElementsByClassName("representative")]
+				let repsLen = reps.length
 				for (let a = 0; a < repsLen; a++) {
-					let hideProperties = JSON.parse(reps[a].dataset.hideprops);
+					let hideProperties = JSON.parse(reps[a].dataset.hideprops)
 					if (reps[a].dataset[tdataprop] == tvalue) {
-						hideProperties = hideProperties.filter(prop => prop !== tdataprop);
-						reps[a].dataset.hideprops = JSON.stringify(hideProperties);
+						hideProperties = hideProperties.filter(prop => prop !== tdataprop)
+						reps[a].dataset.hideprops = JSON.stringify(hideProperties)
 						if (!hideProperties.length) {
-							reps[a].classList.remove("hide");
+							reps[a].classList.remove("hide")
 						}
 					}
 				}
@@ -255,47 +255,47 @@ export default {
 			this.toggleProps[name].count++
 		},
 		sortReps: function(e) {
-			let reps = [...document.getElementsByClassName("representative")];
-			let repsLen = reps.length;
-			let propToSort = e.target.closest(".option").dataset.sortprop;
-			let currentCount = this.sortProps[propToSort].count;
-			let container = document.getElementById("reps-wrapper");
-			let sorted;
+			let reps = [...document.getElementsByClassName("representative")]
+			let repsLen = reps.length
+			let propToSort = e.target.closest(".option").dataset.sortprop
+			let currentCount = this.sortProps[propToSort].count
+			let container = document.getElementById("reps-wrapper")
+			let sorted
 			if (currentCount % 2 == 0) {
 				sorted = reps.sort((a, b) => {
-					let aa = a.dataset[propToSort];
-					let bb = b.dataset[propToSort];
-					let aSansPunc = aa.replace(",", "").replace(".", "");
-					let bSansPunc = bb.replace(",", "").replace(".", "");
+					let aa = a.dataset[propToSort]
+					let bb = b.dataset[propToSort]
+					let aSansPunc = aa.replace(",", "").replace(".", "")
+					let bSansPunc = bb.replace(",", "").replace(".", "")
 					if (aSansPunc.search(/[a-z]/gi) !== -1) {
 						return aa < bb ? -1 : aa > bb ? 1 : 0
 					} else {
-						let aSansComma = aa.replace(",", "");
-						let bSansComma = bb.replace(",", "");
-						let newA = aa.indexOf(/\./g) > -1 ? parseFloat(aSansComma) : !aa.indexOf(/\./g) > -1 ? parseFloat(`${aSansComma}.00`) : null;
-						let newB = bb.indexOf(/\./g) > -1 ? parseFloat(bSansComma) : !bb.indexOf(/\./g) > -1 ? parseFloat(`${bSansComma}.00`) : null;
+						let aSansComma = aa.replace(",", "")
+						let bSansComma = bb.replace(",", "")
+						let newA = aa.indexOf(/\./g) > -1 ? parseFloat(aSansComma) : !aa.indexOf(/\./g) > -1 ? parseFloat(`${aSansComma}.00`) : null
+						let newB = bb.indexOf(/\./g) > -1 ? parseFloat(bSansComma) : !bb.indexOf(/\./g) > -1 ? parseFloat(`${bSansComma}.00`) : null
 						return newA == 0 ? 1 : aa < newB ? -1 : newA > newB ? 1 : 0
 					}
-				});
+				})
 			} else {
 				sorted = reps.sort((a, b) => {
-					let aa = a.dataset[propToSort];
-					let bb = b.dataset[propToSort];
-					let aSansPunc = aa.replace(",", "").replace(".", "");
-					let bSansPunc = bb.replace(",", "").replace(".", "");
+					let aa = a.dataset[propToSort]
+					let bb = b.dataset[propToSort]
+					let aSansPunc = aa.replace(",", "").replace(".", "")
+					let bSansPunc = bb.replace(",", "").replace(".", "")
 					if (aSansPunc.search(/[a-z]/gi) !== -1) {
 						return aa > bb ? -1 : aa < bb ? 1 : 0
 					} else {
-						let aSansComma = aa.replace(",", "");
-						let bSansComma = bb.replace(",", "");
-						let newA = aa.indexOf(/\./g) > -1 ? parseFloat(aSansComma) : !aa.indexOf(/\./g) > -1 ? parseFloat(`${aSansComma}.00`) : null;
-						let newB = bb.indexOf(/\./g) > -1 ? parseFloat(bSansComma) : !bb.indexOf(/\./g) > -1 ? parseFloat(`${bSansComma}.00`) : null;
+						let aSansComma = aa.replace(",", "")
+						let bSansComma = bb.replace(",", "")
+						let newA = aa.indexOf(/\./g) > -1 ? parseFloat(aSansComma) : !aa.indexOf(/\./g) > -1 ? parseFloat(`${aSansComma}.00`) : null
+						let newB = bb.indexOf(/\./g) > -1 ? parseFloat(bSansComma) : !bb.indexOf(/\./g) > -1 ? parseFloat(`${bSansComma}.00`) : null
 						return newA == 0 ? 1 : aa > newB ? -1 : newA < newB ? 1 : 0
 					}
-				});
+				})
 			}
 			for (let i = 0; i < repsLen; i++) {
-				sorted[i].classList.add("lazyloading");
+				sorted[i].classList.add("lazyloading")
 				if (i < 9) {
 					sorted[i].classList.remove("lazyloading")
 				}
@@ -304,10 +304,10 @@ export default {
 			this.sortProps[propToSort].count++
 		},
 		infoToggle: function(e) {
-			let reps = [...document.getElementsByClassName("representative")];
-			let repsLen = reps.length;
-			let propToSort = e.target.closest(".option-check").dataset.infoprop;
-			let propName = `show${propToSort}`;
+			let reps = [...document.getElementsByClassName("representative")]
+			let repsLen = reps.length
+			let propToSort = e.target.closest(".option-check").dataset.infoprop
+			let propName = `show${propToSort}`
 			if (this.infoProps[propToSort]) {
 				for (let r = 0; r < repsLen; r++) {
 					reps[r].dataset[propName] = false

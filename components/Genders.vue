@@ -24,10 +24,10 @@ export default {
 	computed: {
 		chartdata: function() {
 			let males = 0
-			let females = 0;
+			let females = 0
 			this.reps.forEach(rep => {
 				if (rep.gender === "M") {males++} else if (rep.gender === "F") {females++}
-			});
+			})
 			return {
 				labels: ['Male', 'Female'],
 				datasets: [

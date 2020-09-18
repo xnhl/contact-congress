@@ -44,12 +44,12 @@ export default {
 	},
 	computed: {
 		chartdata: function() {
-			const moment = require('moment');
-			const today = moment();
-			let ages = [0, 0, 0, 0, 0, 0];
+			const moment = require('moment')
+			const today = moment()
+			let ages = [0, 0, 0, 0, 0, 0]
 			this.reps.forEach(rep => {
-				const bday = moment(rep.date_of_birth);
-				const difference = today.diff(bday, 'years');
+				const bday = moment(rep.date_of_birth)
+				const difference = today.diff(bday, 'years')
 				if (difference >= 30 && difference < 40) {
 					ages[0]++
 				} else if (difference >= 40 && difference < 50) {
@@ -63,7 +63,7 @@ export default {
 				} else if (difference >= 80) {
 					ages[5]++
 				}
-			});
+			})
 			return {
 				labels: ['30-40', '40-50', '50-60', '60-70', '70-80', '80+'],
 				datasets: [

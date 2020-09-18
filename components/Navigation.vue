@@ -22,20 +22,20 @@ export default {
 	},
 	methods: {
 		handleScroll: function() {
-			let y = window.scrollY;
-			this.scroll_new = y;
-			let nav_wrapper = document.getElementById("navigation");
+			let y = window.scrollY
+			this.scroll_new = y
+			let nav_wrapper = document.getElementById("navigation")
 			if (this.scroll_new > this.scroll_old) {
-				nav_wrapper.classList.add("nav-hidden");
+				nav_wrapper.classList.add("nav-hidden")
 				this.scroll_old = y
 			} else if (this.scroll_new < this.scroll_old) {
-				nav_wrapper.classList.remove("nav-hidden");
+				nav_wrapper.classList.remove("nav-hidden")
 				this.scroll_old = y
 			}
 		}
 	},
 	mounted() {
-		window.addEventListener('scroll', this.handleScroll);
+		window.addEventListener('scroll', this.handleScroll)
 	}
 }
 </script>

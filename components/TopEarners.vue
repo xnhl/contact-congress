@@ -40,7 +40,7 @@ export default {
 							padding: 5,
 							stepSize: 100000,
 							callback: function(value, index, values) {
-								return value.toLocaleString("en-US",{style:"currency", currency:"USD", minimumFractionDigits: 0, maximumFractionDigits: 0});
+								return value.toLocaleString("en-US",{style:"currency", currency:"USD", minimumFractionDigits: 0, maximumFractionDigits: 0})
 							}
 						}
 					}]
@@ -49,15 +49,15 @@ export default {
 					bodyFontSize: 20,
 					callbacks: {
 						label: function(tooltipItem, data) {
-							var label = data.labels[tooltipItem.index] + ': ';
-							var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+							var label = data.labels[tooltipItem.index] + ': '
+							var amount = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]
 							var formatter = new Intl.NumberFormat('en-US', {
 								style: 'currency',
 								currency: 'USD',
 								minimumFractionDigits: 0
-							});
-							label += formatter.format(amount);
-							return label;
+							})
+							label += formatter.format(amount)
+							return label
 						}
 					}
 				},

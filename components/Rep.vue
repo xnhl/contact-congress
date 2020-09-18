@@ -158,26 +158,26 @@ export default {
 	},
 	computed: {
 		partyAndState: function() {
-			let title = this.info.short_title.indexOf("Sen") > -1 ? "Senator" : this.info.short_title.indexOf("Rep") > -1 ? "Representative" : this.info.short_title.indexOf("Del") > -1 ? "Delegate" : this.info.short_title;
-			let party = this.info.party == "R" ? "Republican" : this.info.party == "D" ? "Democratic" : (this.info.party == "I" || this.info.party == "ID") ? "Independent" : "";
-			let state = this.states[this.info.state];
+			let title = this.info.short_title.indexOf("Sen") > -1 ? "Senator" : this.info.short_title.indexOf("Rep") > -1 ? "Representative" : this.info.short_title.indexOf("Del") > -1 ? "Delegate" : this.info.short_title
+			let party = this.info.party == "R" ? "Republican" : this.info.party == "D" ? "Democratic" : (this.info.party == "I" || this.info.party == "ID") ? "Independent" : ""
+			let state = this.states[this.info.state]
 			return `${party} ${title} in ${state}`
 		},
 		fullName: function() {
-			let fname = this.info.first_name;
-			let lname = ` ${this.info.last_name}`;
-			let middle = this.info.middle_name ? ` ${this.info.middle_name} ` : "";
-			let suffix = this.info.suffix ? ` ${this.info.suffix}` : "";
+			let fname = this.info.first_name
+			let lname = ` ${this.info.last_name}`
+			let middle = this.info.middle_name ? ` ${this.info.middle_name} ` : ""
+			let suffix = this.info.suffix ? ` ${this.info.suffix}` : ""
 			return `${fname}${middle}${lname}${suffix}`
 		},
 		donation: function() {
-			let donation = this.info.telecom_donation ? `$${this.info.telecom_donation}` : "Unknown";
+			let donation = this.info.telecom_donation ? `$${this.info.telecom_donation}` : "Unknown"
 			return `Telecoms Donations: ${donation}`
 		},
 		age: function() {
-			const moment = require('moment');
-			const bday = moment(this.info.date_of_birth);
-			const today = moment();
+			const moment = require('moment')
+			const bday = moment(this.info.date_of_birth)
+			const today = moment()
 			return today.diff(bday, 'years')
 		}
 	}

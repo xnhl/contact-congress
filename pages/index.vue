@@ -23,8 +23,8 @@ export default {
 	},
 	methods: {
 		showNext: function() {
-			let reps = [...document.getElementsByClassName("representative")];
-			let to_show = reps.slice(this.offset*this.num, (this.offset*this.num)+this.num);
+			let reps = [...document.getElementsByClassName("representative")]
+			let to_show = reps.slice(this.offset*this.num, (this.offset*this.num)+this.num)
 			for (let rep of to_show) {
 				rep.classList.remove("lazyloading")
 			}
@@ -32,30 +32,30 @@ export default {
 		}
 	},
 	mounted() {
-		var lazyloadImages = document.querySelectorAll('.lazy');
+		var lazyloadImages = document.querySelectorAll('.lazy')
 		var imageObserver = new IntersectionObserver((entries, observer) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
-					var image = entry.target;
-					image.src = image.dataset.lazysrc;
-					image.classList.remove('lazy');
+					var image = entry.target
+					image.src = image.dataset.lazysrc
+					image.classList.remove('lazy')
 					imageObserver.unobserve(image)
 				}
 			})
-		});
+		})
 		lazyloadImages.forEach((image) => {
 			imageObserver.observe(image)
-		});
-		var loader = document.querySelector('#trigger');
+		})
+		var loader = document.querySelector('#trigger')
 		var loadObserver = new IntersectionObserver((entries, observer) => {
 			if (entries[0].isIntersecting) {
 				this.showNext()
 			}
-			var imgArr = document.querySelectorAll('.lazy');
+			var imgArr = document.querySelectorAll('.lazy')
 			imgArr.forEach((image) => {
 				imageObserver.observe(image)
-			});
-		});
+			})
+		})
 		loadObserver.observe(loader)
 	}
 }
